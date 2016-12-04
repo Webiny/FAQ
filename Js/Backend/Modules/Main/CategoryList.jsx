@@ -29,6 +29,17 @@ CategoryList.defaultProps = {
             }
         };
 
+        const articleConfirmDelete = {
+            label: 'Delete',
+            title: 'Delete confirmation',
+            icon: 'icon-cancel',
+            message: 'Are you sure you want to delete this record?',
+            onConfirm: (data) => {
+                const api = new Webiny.Api.Endpoint('/entities/faq/article');
+                return api.delete('/' + data.id);
+            }
+        };
+
         return (
             <Ui.ViewSwitcher.Container>
                 <Ui.ViewSwitcher.View view="categoryListView" defaultView>
@@ -66,12 +77,12 @@ CategoryList.defaultProps = {
                                                                     </Ui.ExpandableList.Field>
 
                                                                     <Ui.ExpandableList.RowDetailsList title={row.title}>
-                                                                        <ArticleList data={row}/>
+                                                                        <ArticleList data={row} showView={showView}/>
                                                                     </Ui.ExpandableList.RowDetailsList>
 
                                                                     <Ui.ExpandableList.ActionSet>
                                                                         <Ui.ExpandableList.Action
-                                                                            label="New Question"
+                                                                            label="New Article"
                                                                             icon="fa-plus-circle"
                                                                             onClick={() => Webiny.Router.goToRoute('Faq.Article.Create', {category: row.id})}/>
 
@@ -112,6 +123,10 @@ CategoryList.defaultProps = {
 
                 <Ui.ViewSwitcher.View view="confirmDelete" modal>
                     {(showView, data) => <Ui.Modal.Confirmation onComplete={showView('categoryListView')} {...confirmDelete} data={data}/>}
+                </Ui.ViewSwitcher.View>
+
+                <Ui.ViewSwitcher.View view="articleConfirmDelete" modal>
+                    {(showView, data) => <Ui.Modal.Confirmation onComplete={showView('categoryListView')} {...articleConfirmDelete} data={data}/>}
                 </Ui.ViewSwitcher.View>
 
 
