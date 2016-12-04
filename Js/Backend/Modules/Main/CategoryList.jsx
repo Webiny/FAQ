@@ -13,7 +13,7 @@ CategoryList.defaultProps = {
     renderer() {
         const listProps = {
             api: '/entities/faq/category',
-            fields: '*, author[firstName,lastName]',
+            fields: '*,author[firstName,lastName],articles.id,articles.author[firstName,lastName],articles.question,articles.answer,articles.createdOn',
             perPage: 100,
             sort: '-createdOn',
             layout: null
@@ -39,7 +39,7 @@ CategoryList.defaultProps = {
                     {showView => (
                         <view>
                             <Ui.View.List>
-                                <Ui.View.Header title="FAQ Articles">
+                                <Ui.View.Header title="FAQ Articles" description="List of your FAQ categories. Click on a category to show the questions.">
                                     <Ui.Link type="primary" align="right" onClick={() => showView('categoryModalView')()}>
                                         <Ui.Icon icon="icon-plus-circled"/>
                                         Create new Category
@@ -58,16 +58,19 @@ CategoryList.defaultProps = {
                                                         {data.map(row => {
                                                             return (
                                                                 <Ui.ExpandableList.Row key={row.id}>
-                                                                    <Ui.ExpandableList.Field all={5}
+                                                                    <Ui.ExpandableList.Field all={4}
                                                                                              name="Category">{row.title}</Ui.ExpandableList.Field>
-                                                                    <Ui.ExpandableList.Field all={3}
+                                                                    <Ui.ExpandableList.Field all={2}
                                                                                              name="Author">{row.author.firstName} {row.author.lastName}</Ui.ExpandableList.Field>
-                                                                    <Ui.ExpandableList.Field all={4} name="Created">
+                                                                    <Ui.ExpandableList.Field all={2} name="Created">
                                                                         <Ui.Filters.DateTime value={row.createdOn}/>
+                                                                    </Ui.ExpandableList.Field>
+                                                                    <Ui.ExpandableList.Field all={2} name="Questions" className="text-center">
+                                                                        <span className="badge badge-default">{row.articles.length}</span>
                                                                     </Ui.ExpandableList.Field>
 
                                                                     <Ui.ExpandableList.RowDetailsList title={row.title}>
-                                                                        <ArticleList category={row}/>
+                                                                        <ArticleList data={row}/>
                                                                     </Ui.ExpandableList.RowDetailsList>
 
                                                                     <Ui.ExpandableList.ActionSet>
