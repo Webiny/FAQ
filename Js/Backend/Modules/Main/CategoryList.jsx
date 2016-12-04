@@ -1,6 +1,5 @@
 import Webiny from 'Webiny';
 const Ui = Webiny.Ui.Components;
-const Table = Ui.List.Table;
 import CategoryModal from './CategoryModal';
 import ArticleList from './ArticleList';
 
@@ -26,9 +25,7 @@ CategoryList.defaultProps = {
             message: 'Are you sure you want to delete this record?',
             onConfirm: (data) => {
                 const api = new Webiny.Api.Endpoint('/entities/faq/category');
-                return api.delete('/' + data.id).then(result => {
-                    this.showView('categoryListView');
-                });
+                return api.delete('/' + data.id);
             }
         };
 
@@ -114,7 +111,7 @@ CategoryList.defaultProps = {
                 </Ui.ViewSwitcher.View>
 
                 <Ui.ViewSwitcher.View view="confirmDelete" modal>
-                    {(showView, data) => <Ui.Modal.Confirmation {...confirmDelete} data={data}/>}
+                    {(showView, data) => <Ui.Modal.Confirmation onComplete={showView('categoryListView')} {...confirmDelete} data={data}/>}
                 </Ui.ViewSwitcher.View>
 
 

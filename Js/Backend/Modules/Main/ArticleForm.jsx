@@ -69,7 +69,7 @@ FaqForm.defaultProps = {
                                             </Ui.Grid.Row>
                                         </Ui.View.Body>
                                         <Ui.View.Footer>
-                                            <Ui.Button align="left" type="default" onClick={container.cancel} label="Cancel"/>
+                                            <Ui.Button align="left" type="default" onClick={container.cancel} label="Go Back"/>
                                             <Ui.Button align="right" type="primary" onClick={() => this.saveAndContinueEditing(container)}
                                                        label="Save & Continue editing"/>
                                             <Ui.Button align="right" type="primary" onClick={() => this.save(container)}
