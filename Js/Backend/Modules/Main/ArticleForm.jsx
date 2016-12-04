@@ -22,7 +22,7 @@ class FaqForm extends Webiny.Ui.View {
 
     onSubmitSuccess() {
         if (!this.continue) {
-            Webiny.Router.goToRoute('Faq.Main.FaqList');
+            Webiny.Router.goToRoute('Faq.Category.List');
         }
     }
 

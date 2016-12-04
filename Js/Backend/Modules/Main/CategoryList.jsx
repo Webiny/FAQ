@@ -24,11 +24,10 @@ CategoryList.defaultProps = {
             title: 'Delete confirmation',
             icon: 'icon-cancel',
             message: 'Are you sure you want to delete this record?',
-            onConfirm: (e, data) => {
-                console.log(data);
+            onConfirm: (data) => {
                 const api = new Webiny.Api.Endpoint('/entities/faq/category');
-                return api.delete('/' + data.props.id).then(result => {
-                    showView('categoryListView');
+                return api.delete('/' + data.id).then(result => {
+                    this.showView('categoryListView');
                 });
             }
         };
