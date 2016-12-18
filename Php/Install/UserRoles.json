@@ -1,0 +1,8 @@
+[
+    {
+        "name": "FAQ manager",
+        "slug": "faq",
+        "description": "This role allows user to manage all faq articles",
+        "permissions": ["faq-manage-all"]
+    }
+]

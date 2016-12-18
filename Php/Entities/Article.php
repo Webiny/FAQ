@@ -3,18 +3,18 @@ namespace Apps\Faq\Php\Entities;
 
 use Apps\Core\Php\DevTools\Entity\AbstractEntity;
 use Apps\Core\Php\DevTools\WebinyTrait;
+use Apps\Core\Php\Entities\User;
 
 /**
  * Class Article
  *
  * @property string   $id
- * @property string   $title
- * @property string   $slug
+ * @property string   $questions
+ * @property string   $answer
  * @property Category $category
- * @property string   $content
- * @property array    $draft
+ * @property User     $author
  * @property boolean  $published
- * @property string   $icon
+ * @property string   $slug
  *
  * @package Apps\TheHub\Php\Entities
  *
@@ -30,8 +30,23 @@ class Article extends AbstractEntity
     {
         parent::__construct();
 
-        $this->attr('question')->char()->setRequired(true)->setToArrayDefault();
+        $this->index(new SingleIndex('published', 'published'));
+        $this->index(new SingleIndex('slug', 'slug'));
+
+        $this->attr('slug')->char()->setToArrayDefault()->setValidators('unique')->setValidationMessages([
+            'unique' => 'A category with the same title already exists.'
+        ]);
+
+        $this->attr('question')->char()->setRequired(true)->onSet(function ($val) {
+            if (!$this->slug && !$this->exists()) {
+                $this->slug = $this->str($val)->slug()->val();
+            }
+
+            return $val;
+        })->setToArrayDefault();
         $this->attr('answer')->object()->setToArrayDefault();
+        $this->attr('published')->boolean()->setDefaultValue(false)->setToArrayDefault();
+
 
         $category = '\Apps\Faq\Php\Entities\Category';
         $this->attr('category')->many2one()->setEntity($category)->setToArrayDefault();

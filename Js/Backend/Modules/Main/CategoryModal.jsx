@@ -14,6 +14,7 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
             model: {
                 id: _.get(this.props.data, 'id', null),
                 title: _.get(this.props.data, 'title', ''),
+                published: _.get(this.props.data, 'published', false),
                 slug: _.get(this.props.data, 'slug', '')
             }
         };
@@ -27,6 +28,12 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
                             <Ui.Grid.Row>
                                 <Ui.Grid.Col all={12}>
                                     <Ui.Input label="Title" name="title" validate="required" autoFocus={true}/>
+                                </Ui.Grid.Col>
+                                <Ui.Grid.Col all={12}>
+                                    <Ui.Select label="Published" name="published">
+                                        <option value={true}>Yes</option>
+                                        <option value={false}>No</option>
+                                    </Ui.Select>
                                 </Ui.Grid.Col>
                                 <Ui.Grid.Col all={12}>
                                     <Ui.Input

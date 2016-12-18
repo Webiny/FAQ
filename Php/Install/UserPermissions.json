@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Manage faq articles",
+        "slug": "faq-manage-all",
+        "description": "Allows user to perform all actions on FAQ app",
+        "permissions": {
+            "entities": {
+                "Apps\\Faq\\Php\\Entities\\Article": {
+                    "crudCreate": true,
+                    "crudUpdate": true,
+                    "crudDelete": true,
+                    "crudRead": true,
+                    "category/{slug}": {
+                        "get": true
+                    }
+                },
+                "Apps\\Faq\\Php\\Entities\\Category": {
+                    "crudCreate": true,
+                    "crudUpdate": true,
+                    "crudDelete": true,
+                    "crudRead": true
+                }
+            }
+        }
+    }
+]

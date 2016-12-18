@@ -8,9 +8,10 @@ use Apps\Core\Php\DevTools\WebinyTrait;
 /**
  * Class Category
  *
- * @property string   $id
- * @property string   $title
- * @property string   $slug
+ * @property string  $id
+ * @property string  $title
+ * @property string  $slug
+ * @property boolean $published
  *
  * @package Apps\Faq\Php\Entities
  *
@@ -26,6 +27,9 @@ class Category extends AbstractEntity
     {
         parent::__construct();
 
+        $this->index(new SingleIndex('published', 'published'));
+        $this->index(new SingleIndex('slug', 'slug'));
+
         $this->attr('slug')->char()->setToArrayDefault()->setValidators('unique')->setValidationMessages([
             'unique' => 'A category with the same title already exists.'
         ]);
@@ -36,6 +40,8 @@ class Category extends AbstractEntity
 
             return $val;
         });
+
+        $this->attr('published')->boolean()->setDefaultValue(false)->setToArrayDefault();
 
         $article = '\Apps\Faq\Php\Entities\Article';
         $this->attr('articles')->one2many('category')->setEntity($article);

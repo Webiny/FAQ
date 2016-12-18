@@ -12,7 +12,7 @@ CategoryList.defaultProps = {
     renderer() {
         const listProps = {
             api: '/entities/faq/category',
-            fields: '*,author[firstName,lastName],articles.id,articles.author[firstName,lastName],articles.question,articles.answer,articles.createdOn',
+            fields: '*,author[firstName,lastName],articles.id,articles.author[firstName,lastName],articles.question,articles.answer,articles.createdOn,articles.published',
             perPage: 100,
             sort: '-createdOn',
             layout: null
@@ -67,6 +67,12 @@ CategoryList.defaultProps = {
                                                                 <Ui.ExpandableList.Row key={row.id}>
                                                                     <Ui.ExpandableList.Field all={4}
                                                                                              name="Category">{row.title}</Ui.ExpandableList.Field>
+                                                                    <Ui.ExpandableList.Field
+                                                                        all={2}
+                                                                        name="Published"
+                                                                        className="text-center">
+                                                                        {(row.published === true ? "Yes" : "No")}
+                                                                    </Ui.ExpandableList.Field>
                                                                     <Ui.ExpandableList.Field all={2}
                                                                                              name="Author">{row.author.firstName} {row.author.lastName}</Ui.ExpandableList.Field>
                                                                     <Ui.ExpandableList.Field all={2} name="Created">
