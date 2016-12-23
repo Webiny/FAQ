@@ -2,8 +2,10 @@
 namespace Apps\Faq\Php\Entities;
 
 use Apps\Core\Php\DevTools\Entity\AbstractEntity;
+use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Apps\Core\Php\DevTools\WebinyTrait;
 use Apps\Core\Php\Entities\User;
+use Webiny\Component\Mongo\Index\SingleIndex;
 
 /**
  * Class Article
@@ -51,19 +53,22 @@ class Article extends AbstractEntity
         $category = '\Apps\Faq\Php\Entities\Category';
         $this->attr('category')->many2one()->setEntity($category)->setToArrayDefault();
 
-        $author = '\Apps\Core\Php\Entities\User';
-        $this->attr('author')->many2one()->setEntity($author)->setDefaultValue($this->wAuth()->getUser());
-
-        $this->api('GET', '/')->setAuthorization(false);
-        $this->api('GET', '{id}')->setAuthorization(false);
+        $this->api('GET', '/')->setPublic();
+        $this->api('GET', '{id}')->setPublic();
 
         /**
          * @api.name Returns all pages from a category
          */
         $this->api('GET', 'category/{slug}', function ($slug) {
-            $articles = Category::findOne(['slug' => $slug])->articles;
+            /* @var Category $category */
+            $category = Category::findOne(['slug' => $slug]);
 
-            return $this->apiFormatList($articles, '*,answer');
-        })->setAuthorization(false);
+            if ($category) {
+                return $this->apiFormatList($category->articles, '*,answer');
+            }
+
+            throw new AppException('Category not found.');
+
+        })->setPublic();
     }
 }
