@@ -41,7 +41,7 @@ CategoryList.defaultProps = {
         };
 
         return (
-            <Ui.ViewSwitcher.Container>
+            <Ui.ViewSwitcher>
                 <Ui.ViewSwitcher.View view="categoryListView" defaultView>
                     {showView => (
                         <view>
@@ -136,7 +136,7 @@ CategoryList.defaultProps = {
                 </Ui.ViewSwitcher.View>
 
 
-            </Ui.ViewSwitcher.Container>
+            </Ui.ViewSwitcher>
         );
     }
 };
