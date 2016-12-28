@@ -43,7 +43,6 @@ class Category extends AbstractEntity
             return $val;
         });
 
-
         $this->attr('totalArticles')->dynamic(function () {
             return Article::count(['category' => $this->id]);
         });

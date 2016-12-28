@@ -16,6 +16,7 @@ use Webiny\Component\Mongo\Index\SingleIndex;
  * @property Category $category
  * @property User     $author
  * @property boolean  $published
+ * @property string   $publishedOn
  * @property string   $slug
  *
  * @package Apps\TheHub\Php\Entities
@@ -47,7 +48,19 @@ class Article extends AbstractEntity
             return $val;
         })->setToArrayDefault();
         $this->attr('answer')->object()->setToArrayDefault();
-        $this->attr('published')->boolean()->setDefaultValue(false)->setToArrayDefault();
+        $this->attr('published')->boolean()->setDefaultValue(false)->onSet(function ($published) {
+            if (!$this->published && $published) {
+                $this->publishedOn = date('Y-m-d H:i:s');
+            }
+
+            if ($this->published && !$published) {
+                $this->publishedOn = null;
+            }
+
+            return $published;
+        })->setToArrayDefault();
+
+        $this->attr('publishedOn')->datetime()->setToArrayDefault()->setSkipOnPopulate();
 
 
         $category = '\Apps\Faq\Php\Entities\Category';
