@@ -1,7 +1,8 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 import CategoryModal from './CategoryModal';
 import ArticleList from './ArticleList';
+
+const Ui = Webiny.Ui.Components;
 
 class CategoryList extends Webiny.Ui.View {
 
@@ -55,7 +56,7 @@ CategoryList.defaultProps = {
                                 <Ui.View.Body>
 
                                     <Ui.List {...listProps}>
-                                        {(data, meta, errorList) => {
+                                        {(data) => {
                                             return (
                                                 <Ui.Grid.Col all={12}>
                                                     <Ui.List.Loader/>
