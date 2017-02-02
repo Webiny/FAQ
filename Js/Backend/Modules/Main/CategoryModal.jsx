@@ -5,6 +5,7 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
 
     renderDialog() {
         const formProps = {
+            ui: 'faqCategoryForm',
             api: '/entities/faq/category',
             validateOnFirstSubmit: true,
             onSubmitSuccess: (val) => {
@@ -13,37 +14,42 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
             model: {
                 id: _.get(this.props.data, 'id', null),
                 title: _.get(this.props.data, 'title', ''),
+                published: _.get(this.props.data, 'published', false),
                 slug: _.get(this.props.data, 'slug', '')
             }
         };
 
         return (
             <Ui.Modal.Dialog>
-                <Ui.Form {...formProps}>
-                    {(model, form) => (
-                        <modal>
-                            <Ui.Modal.Header title="Category"/>
-                            <Ui.Modal.Body>
-                                <Ui.Grid.Row>
-                                    <Ui.Grid.Col all={12}>
-                                        <Ui.Input label="Title" name="title" validate="required" autoFocus={true}/>
-                                    </Ui.Grid.Col>
-                                    <Ui.Grid.Col all={12}>
-                                        <Ui.Input
-                                            label="Slug"
-                                            name="slug"
-                                            placeholder="Leave blank for automatic slug"
-                                            description="This cannot be changed later."/>
-                                    </Ui.Grid.Col>
-                                </Ui.Grid.Row>
-                            </Ui.Modal.Body>
-                            <Ui.Modal.Footer>
-                                <Ui.Button type="secondary" label="Cancel" onClick={this.hide}/>
-                                <Ui.Button type="primary" label="Save Category" onClick={form.submit}/>
-                            </Ui.Modal.Footer>
-                        </modal>
-                    )}
-                </Ui.Form>
+                <Ui.Modal.Header title="Category"/>
+                <Ui.Modal.Body>
+                    <Ui.Form {...formProps}>
+                        {() => (
+                            <Ui.Grid.Row>
+                                <Ui.Grid.Col all={12}>
+                                    <Ui.Input label="Title" name="title" validate="required" autoFocus={true}/>
+                                </Ui.Grid.Col>
+                                <Ui.Grid.Col all={12}>
+                                    <Ui.Select label="Published" name="published">
+                                        <option value={true}>Yes</option>
+                                        <option value={false}>No</option>
+                                    </Ui.Select>
+                                </Ui.Grid.Col>
+                                <Ui.Grid.Col all={12}>
+                                    <Ui.Input
+                                        label="Slug"
+                                        name="slug"
+                                        placeholder="Leave blank for automatic slug"
+                                        description="This cannot be changed later."/>
+                                </Ui.Grid.Col>
+                            </Ui.Grid.Row>
+                        )}
+                    </Ui.Form>
+                </Ui.Modal.Body>
+                <Ui.Modal.Footer>
+                    <Ui.Button type="secondary" label="Cancel" onClick={this.hide}/>
+                    <Ui.Button type="primary" label="Save Category" onClick={this.ui('faqCategoryForm:submit')}/>
+                </Ui.Modal.Footer>
             </Ui.Modal.Dialog>
         );
     }

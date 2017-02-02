@@ -16,11 +16,17 @@ ArticleList.defaultProps = {
                     {this.props.data.articles.map(row => {
                         return (
                             <Ui.ExpandableList.Row key={row.id}>
-                                <Ui.ExpandableList.Field all={5}
+                                <Ui.ExpandableList.Field all={4}
                                                          name="Question">{row.question}</Ui.ExpandableList.Field>
-                                <Ui.ExpandableList.Field all={3}
+                                <Ui.ExpandableList.Field
+                                    all={2}
+                                    name="Published"
+                                    className="text-center">
+                                    {(row.published === true ? "Yes" : "No")}
+                                </Ui.ExpandableList.Field>
+                                <Ui.ExpandableList.Field all={2}
                                                          name="Author">{row.author.firstName} {row.author.lastName}</Ui.ExpandableList.Field>
-                                <Ui.ExpandableList.Field all={4} name="Created">
+                                <Ui.ExpandableList.Field all={2} name="Created">
                                     <Ui.Filters.DateTime value={row.createdOn}/>
                                 </Ui.ExpandableList.Field>
 

@@ -57,8 +57,15 @@ FaqForm.defaultProps = {
 
                                         <Ui.View.Body>
                                             <Ui.Grid.Row>
-                                                <Ui.Grid.Col all={12}>
+                                                <Ui.Grid.Col all={10}>
                                                     <Ui.Input label="Question" name="question" validate="required"/>
+                                                </Ui.Grid.Col>
+
+                                                <Ui.Grid.Col all={2}>
+                                                    <Ui.Select label="Published" name="published">
+                                                        <option value={true}>Yes</option>
+                                                        <option value={false}>No</option>
+                                                    </Ui.Select>
                                                 </Ui.Grid.Col>
 
                                                 <Ui.Grid.Col all={12}>
