@@ -5,6 +5,7 @@ import ArticleForm from './ArticleForm';
 class Main extends Webiny.Module {
 
     init() {
+        this.name = 'Main';
         const Menu = Webiny.Ui.Menu;
         const role = 'faq';
 
