@@ -1,5 +1,4 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 
 class FaqForm extends Webiny.Ui.View {
     constructor(props) {
@@ -46,52 +45,66 @@ FaqForm.defaultProps = {
         };
 
         return (
-            <Ui.Data {...categoryProps}>
-                {(categoryData) => {
-                    return (
-                        <Ui.Form {...formProps}>
-                            {(data, container) => {
-                                return (
-                                    <Ui.View.Form>
-                                        <Ui.View.Header title="Article" description={<span>Category: <strong>{categoryData.title}</strong></span>}/>
+            <Webiny.Ui.LazyLoad modules={['Data', 'Form', 'View', 'Grid', 'Input', 'Select', 'Draft', 'Button']}>
+                {(Ui) => (
+                    <Ui.Data {...categoryProps}>
+                        {(categoryData) => {
+                            return (
+                                <Ui.Form {...formProps}>
+                                    {(data, container) => {
+                                        return (
+                                            <Ui.View.Form>
+                                                <Ui.View.Header title="Article"
+                                                                description={<span>Category: <strong>{categoryData.title}</strong></span>}/>
 
-                                        <Ui.View.Body>
-                                            <Ui.Grid.Row>
-                                                <Ui.Grid.Col all={10}>
-                                                    <Ui.Input label="Question" name="question" validate="required"/>
-                                                </Ui.Grid.Col>
+                                                <Ui.View.Body>
+                                                    <Ui.Grid.Row>
+                                                        <Ui.Grid.Col all={10}>
+                                                            <Ui.Input label="Question" name="question" validate="required"/>
+                                                        </Ui.Grid.Col>
 
-                                                <Ui.Grid.Col all={2}>
-                                                    <Ui.Select label="Published" name="published">
-                                                        <option value={true}>Yes</option>
-                                                        <option value={false}>No</option>
-                                                    </Ui.Select>
-                                                </Ui.Grid.Col>
+                                                        <Ui.Grid.Col all={2}>
+                                                            <Ui.Select label="Published" name="published">
+                                                                <option value={true}>Yes</option>
+                                                                <option value={false}>No</option>
+                                                            </Ui.Select>
+                                                        </Ui.Grid.Col>
 
-                                                <Ui.Grid.Col all={12}>
-                                                    <div className="form-group">
-                                                        <Ui.Draft.SimpleEditor name="answer"/>
-                                                    </div>
-                                                </Ui.Grid.Col>
-                                            </Ui.Grid.Row>
-                                        </Ui.View.Body>
-                                        <Ui.View.Footer>
-                                            <Ui.Button align="left" type="default" onClick={container.cancel} label="Go Back"/>
-                                            <Ui.Button align="right" type="primary" onClick={() => this.saveAndContinueEditing(container)}
-                                                       label="Save & Continue editing"/>
-                                            <Ui.Button align="right" type="primary" onClick={() => this.save(container)}
-                                                       label="Save & Exit"/>
-                                        </Ui.View.Footer>
-                                    </Ui.View.Form>
-                                );
-                            }}
-                        </Ui.Form>
-                    );
-                }}
-            </Ui.Data>
+                                                        <Ui.Grid.Col all={12}>
+                                                            <div className="form-group">
+                                                                <Ui.Draft.SimpleEditor name="answer"/>
+                                                            </div>
+                                                        </Ui.Grid.Col>
+                                                    </Ui.Grid.Row>
+                                                </Ui.View.Body>
+                                                <Ui.View.Footer>
+                                                    <Ui.Button
+                                                        align="left"
+                                                        type="default"
+                                                        onClick={container.cancel}
+                                                        label="Go Back"/>
+                                                    <Ui.Button
+                                                        align="right"
+                                                        type="primary"
+                                                        onClick={() => this.saveAndContinueEditing(container)}
+                                                        label="Save & Continue editing"/>
+                                                    <Ui.Button
+                                                        align="right"
+                                                        type="primary"
+                                                        onClick={() => this.save(container)}
+                                                        label="Save & Exit"/>
+                                                </Ui.View.Footer>
+                                            </Ui.View.Form>
+                                        );
+                                    }}
+                                </Ui.Form>
+                            );
+                        }}
+                    </Ui.Data>
+                )}
+            </Webiny.Ui.LazyLoad>
         );
     }
 };
-
 
 export default FaqForm;

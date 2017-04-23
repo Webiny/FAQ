@@ -1,5 +1,4 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 
 class CategoryModal extends Webiny.Ui.ModalComponent {
 
@@ -19,40 +18,42 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
             }
         };
 
+        const {Modal, Form, Grid, Select, Input, Button} = this.props;
+
         return (
-            <Ui.Modal.Dialog>
-                <Ui.Modal.Header title="Category"/>
-                <Ui.Modal.Body>
-                    <Ui.Form {...formProps}>
+            <Modal.Dialog>
+                <Modal.Header title="Category"/>
+                <Modal.Body>
+                    <Form {...formProps}>
                         {() => (
-                            <Ui.Grid.Row>
-                                <Ui.Grid.Col all={12}>
-                                    <Ui.Input label="Title" name="title" validate="required" autoFocus={true}/>
-                                </Ui.Grid.Col>
-                                <Ui.Grid.Col all={12}>
-                                    <Ui.Select label="Published" name="published">
+                            <Grid.Row>
+                                <Grid.Col all={12}>
+                                    <Input label="Title" name="title" validate="required" autoFocus={true}/>
+                                </Grid.Col>
+                                <Grid.Col all={12}>
+                                    <Select label="Published" name="published">
                                         <option value={true}>Yes</option>
                                         <option value={false}>No</option>
-                                    </Ui.Select>
-                                </Ui.Grid.Col>
-                                <Ui.Grid.Col all={12}>
-                                    <Ui.Input
+                                    </Select>
+                                </Grid.Col>
+                                <Grid.Col all={12}>
+                                    <Input
                                         label="Slug"
                                         name="slug"
                                         placeholder="Leave blank for automatic slug"
                                         description="This cannot be changed later."/>
-                                </Ui.Grid.Col>
-                            </Ui.Grid.Row>
+                                </Grid.Col>
+                            </Grid.Row>
                         )}
-                    </Ui.Form>
-                </Ui.Modal.Body>
-                <Ui.Modal.Footer>
-                    <Ui.Button type="secondary" label="Cancel" onClick={this.hide}/>
-                    <Ui.Button type="primary" label="Save Category" onClick={this.ui('faqCategoryForm:submit')}/>
-                </Ui.Modal.Footer>
-            </Ui.Modal.Dialog>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button type="secondary" label="Cancel" onClick={this.hide}/>
+                    <Button type="primary" label="Save Category" onClick={this.ui('faqCategoryForm:submit')}/>
+                </Modal.Footer>
+            </Modal.Dialog>
         );
     }
 }
 
-export default CategoryModal;
+export default Webiny.createComponent(CategoryModal, {modules: ['Modal', 'Form', 'Grid', 'Select', 'Input', 'Button']});
