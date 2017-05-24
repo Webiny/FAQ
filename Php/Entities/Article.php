@@ -1,10 +1,10 @@
 <?php
 namespace Apps\Faq\Php\Entities;
 
-use Apps\Core\Php\DevTools\Entity\AbstractEntity;
-use Apps\Core\Php\DevTools\Exceptions\AppException;
-use Apps\Core\Php\DevTools\WebinyTrait;
-use Apps\Core\Php\Entities\User;
+use Apps\Webiny\Php\DevTools\Entity\AbstractEntity;
+use Apps\Webiny\Php\DevTools\Exceptions\AppException;
+use Apps\Webiny\Php\DevTools\WebinyTrait;
+use Apps\Webiny\Php\Entities\User;
 use Webiny\Component\Mongo\Index\SingleIndex;
 
 /**
