@@ -41,7 +41,8 @@ FaqForm.defaultProps = {
         const categoryProps = {
             api: '/entities/faq/category',
             url: Webiny.Router.getParams('category'),
-            fields: 'title'
+            fields: 'title',
+            prepareLoadedData: data => data.entity
         };
 
         return (
@@ -54,8 +55,9 @@ FaqForm.defaultProps = {
                                     {(data, container) => {
                                         return (
                                             <Ui.View.Form>
-                                                <Ui.View.Header title="Article"
-                                                                description={<span>Category: <strong>{categoryData.title}</strong></span>}/>
+                                                <Ui.View.Header
+                                                    title="Article"
+                                                    description={<span>Category: <strong>{categoryData.title}</strong></span>}/>
 
                                                 <Ui.View.Body>
                                                     <Ui.Grid.Row>
