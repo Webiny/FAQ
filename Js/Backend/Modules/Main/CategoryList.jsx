@@ -124,7 +124,7 @@ CategoryList.defaultProps = {
                         </Ui.ViewSwitcher.View>
 
                         <Ui.ViewSwitcher.View view="categoryModalView" modal>
-                            {(showView, data) => <CategoryModal ui="categoryModal" {...{showView, data}} />}
+                            {(showView, data) => <CategoryModal {...{showView, data}}/>}
                         </Ui.ViewSwitcher.View>
 
                         <Ui.ViewSwitcher.View view="confirmDelete" modal>
