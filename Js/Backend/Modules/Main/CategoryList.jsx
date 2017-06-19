@@ -61,61 +61,64 @@ CategoryList.defaultProps = {
                                             <Ui.List {...listProps}>
                                                 {(data) => {
                                                     return (
-                                                        <Ui.Grid.Col all={12}>
-                                                            <Ui.List.Loader/>
-                                                            <Ui.List.Table.Empty renderIf={!data.length}/>
-                                                            <Ui.ExpandableList>
-                                                                {data.map(row => {
-                                                                    return (
-                                                                        <Ui.ExpandableList.Row key={row.id}>
-                                                                            <Ui.ExpandableList.Field all={4} name="Category">
-                                                                                {row.title}
-                                                                            </Ui.ExpandableList.Field>
-                                                                            <Ui.ExpandableList.Field
-                                                                                all={2}
-                                                                                name="Published"
-                                                                                className="text-center">
-                                                                                {(row.published === true ? "Yes" : "No")}
-                                                                            </Ui.ExpandableList.Field>
-                                                                            <Ui.ExpandableList.Field all={2} name="Author">
-                                                                                {row.createdBy.firstName} {row.createdBy.lastName}
-                                                                            </Ui.ExpandableList.Field>
-                                                                            <Ui.ExpandableList.Field all={2} name="Created">
-                                                                                <Ui.Filters.DateTime value={row.createdOn}/>
-                                                                            </Ui.ExpandableList.Field>
-                                                                            <Ui.ExpandableList.Field
-                                                                                all={2}
-                                                                                name="Questions"
-                                                                                className="text-center">
+                                                        <Ui.Grid.Row>
+                                                            <Ui.Grid.Col all={12}>
+                                                                <Ui.List.Loader/>
+                                                                <Ui.List.Table.Empty renderIf={!data.length}/>
+                                                                <Ui.ExpandableList>
+                                                                    {data.map(row => {
+                                                                        return (
+                                                                            <Ui.ExpandableList.Row key={row.id}>
+                                                                                <Ui.ExpandableList.Field all={4} name="Category">
+                                                                                    {row.title}
+                                                                                </Ui.ExpandableList.Field>
+                                                                                <Ui.ExpandableList.Field
+                                                                                    all={2}
+                                                                                    name="Published"
+                                                                                    className="text-center">
+                                                                                    {(row.published === true ? "Yes" : "No")}
+                                                                                </Ui.ExpandableList.Field>
+                                                                                <Ui.ExpandableList.Field all={2} name="Author">
+                                                                                    {row.createdBy.firstName} {row.createdBy.lastName}
+                                                                                </Ui.ExpandableList.Field>
+                                                                                <Ui.ExpandableList.Field all={2} name="Created">
+                                                                                    <Ui.Filters.DateTime value={row.createdOn}/>
+                                                                                </Ui.ExpandableList.Field>
+                                                                                <Ui.ExpandableList.Field
+                                                                                    all={2}
+                                                                                    name="Questions"
+                                                                                    className="text-center">
                                                                                 <span className="badge badge-default">
                                                                                     {row.articles.length}
                                                                                 </span>
-                                                                            </Ui.ExpandableList.Field>
-                                                                            <Ui.ExpandableList.RowDetailsList title={row.title}>
-                                                                                <ArticleList data={row} showView={showView}/>
-                                                                            </Ui.ExpandableList.RowDetailsList>
-                                                                            <Ui.ExpandableList.ActionSet>
-                                                                                <Ui.ExpandableList.Action
-                                                                                    label="New Article"
-                                                                                    icon="fa-plus-circle"
-                                                                                    onClick={() => Webiny.Router.goToRoute('Faq.Article.Create', {category: row.id})}/>
-                                                                                <Ui.Dropdown.Divider/>
-                                                                                <Ui.ExpandableList.Action
-                                                                                    label="Edit"
-                                                                                    icon="icon-pencil"
-                                                                                    onClick={() => showView('categoryModalView')(row)}/>
-                                                                                <Ui.ExpandableList.Action
-                                                                                    label="Delete"
-                                                                                    icon="icon-cancel"
-                                                                                    onClick={() => showView('confirmDelete')(row)}/>
-                                                                            </Ui.ExpandableList.ActionSet>
-                                                                        </Ui.ExpandableList.Row>
-                                                                    );
-                                                                })}
-                                                            </Ui.ExpandableList>
-                                                        </Ui.Grid.Col>
+                                                                                </Ui.ExpandableList.Field>
+                                                                                <Ui.ExpandableList.RowDetailsList title={row.title}>
+                                                                                    <ArticleList data={row} showView={showView}/>
+                                                                                </Ui.ExpandableList.RowDetailsList>
+                                                                                <Ui.ExpandableList.ActionSet>
+                                                                                    <Ui.ExpandableList.Action
+                                                                                        label="New Article"
+                                                                                        icon="fa-plus-circle"
+                                                                                        onClick={() => Webiny.Router.goToRoute('Faq.Article.Create', {category: row.id})}/>
+                                                                                    <Ui.Dropdown.Divider/>
+                                                                                    <Ui.ExpandableList.Action
+                                                                                        label="Edit"
+                                                                                        icon="icon-pencil"
+                                                                                        onClick={() => showView('categoryModalView')(row)}/>
+                                                                                    <Ui.ExpandableList.Action
+                                                                                        label="Delete"
+                                                                                        icon="icon-cancel"
+                                                                                        onClick={() => showView('confirmDelete')(row)}/>
+                                                                                </Ui.ExpandableList.ActionSet>
+                                                                            </Ui.ExpandableList.Row>
+                                                                        );
+                                                                    })}
+                                                                </Ui.ExpandableList>
+                                                            </Ui.Grid.Col>
+                                                        </Ui.Grid.Row>
                                                     );
                                                 }}
+
                                             </Ui.List>
                                         </Ui.View.Body>
                                     </Ui.View.List>
