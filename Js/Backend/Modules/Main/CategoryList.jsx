@@ -69,23 +69,23 @@ CategoryList.defaultProps = {
                                                                     {data.map(row => {
                                                                         return (
                                                                             <Ui.ExpandableList.Row key={row.id}>
-                                                                                <Ui.ExpandableList.Field all={4} name="Category">
+                                                                                <Ui.ExpandableList.Field width={4} name="Category">
                                                                                     {row.title}
                                                                                 </Ui.ExpandableList.Field>
                                                                                 <Ui.ExpandableList.Field
-                                                                                    all={2}
+                                                                                    width={2}
                                                                                     name="Published"
                                                                                     className="text-center">
                                                                                     {(row.published === true ? "Yes" : "No")}
                                                                                 </Ui.ExpandableList.Field>
-                                                                                <Ui.ExpandableList.Field all={2} name="Author">
+                                                                                <Ui.ExpandableList.Field width={2} name="Author">
                                                                                     {row.createdBy.firstName} {row.createdBy.lastName}
                                                                                 </Ui.ExpandableList.Field>
-                                                                                <Ui.ExpandableList.Field all={2} name="Created">
+                                                                                <Ui.ExpandableList.Field width={2} name="Created">
                                                                                     <Ui.Filters.DateTime value={row.createdOn}/>
                                                                                 </Ui.ExpandableList.Field>
                                                                                 <Ui.ExpandableList.Field
-                                                                                    all={2}
+                                                                                    width={2}
                                                                                     name="Questions"
                                                                                     className="text-center">
                                                                                 <span className="badge badge-default">
