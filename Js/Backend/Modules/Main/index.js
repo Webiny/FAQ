@@ -2,7 +2,7 @@ import Webiny from 'Webiny';
 import CategoryList from './CategoryList';
 import ArticleForm from './ArticleForm';
 
-class Main extends Webiny.Module {
+class Main extends Webiny.App.Module {
 
     init() {
         this.name = 'Main';
