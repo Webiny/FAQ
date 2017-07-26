@@ -1,4 +1,4 @@
-import Webiny from 'Webiny';
+import Webiny from 'webiny';
 import CategoryList from './CategoryList';
 import ArticleForm from './ArticleForm';
 

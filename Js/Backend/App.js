@@ -1,4 +1,4 @@
-import Webiny from 'Webiny';
+import Webiny from 'webiny';
 import Main from './Modules/Main';
 
 class Faq extends Webiny.App {
