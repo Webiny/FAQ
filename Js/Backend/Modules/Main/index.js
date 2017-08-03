@@ -1,3 +1,4 @@
+import React from 'react';
 import Webiny from 'webiny';
 import CategoryList from './CategoryList';
 import ArticleForm from './ArticleForm';
@@ -6,11 +7,10 @@ class Main extends Webiny.App.Module {
 
     init() {
         this.name = 'Main';
-        const Menu = Webiny.Ui.Menu;
         const role = 'faq';
 
         this.registerMenus(
-            new Menu('FAQ', 'Faq.Category.List', 'fa-question-circle-o').setRole(role)
+            <Webiny.Ui.Menu label="FAQ" route="Faq.Category.List" icon="fa-question-circle-o" role={role}/>
         );
 
         this.registerRoutes(
