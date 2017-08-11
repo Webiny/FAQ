@@ -27,7 +27,7 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
                     {(model, form) => (
                         <Modal.Content>
                             <Form.Loader/>
-                            <Modal.Header title="Category"/>
+                            <Modal.Header title="Category" onClose={this.hide}/>
                             <Modal.Body>
                                 <Grid.Row>
                                     <Grid.Col all={12}>
