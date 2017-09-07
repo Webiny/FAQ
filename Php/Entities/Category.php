@@ -1,7 +1,10 @@
 <?php
+
 namespace Apps\Faq\Php\Entities;
 
+use Apps\Webiny\Php\Lib\Api\ApiContainer;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
+use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
 use Apps\Webiny\Php\Lib\WebinyTrait;
 use Webiny\Component\Entity\EntityCollection;
 use Webiny\Component\Mongo\Index\SingleIndex;
@@ -29,9 +32,6 @@ class Category extends AbstractEntity
     {
         parent::__construct();
 
-        $this->index(new SingleIndex('published', 'published'));
-        $this->index(new SingleIndex('slug', 'slug'));
-
         $this->attr('slug')->char()->setToArrayDefault()->setValidators('unique')->setValidationMessages([
             'unique' => 'A category with the same title already exists.'
         ]);
@@ -51,5 +51,13 @@ class Category extends AbstractEntity
 
         $article = '\Apps\Faq\Php\Entities\Article';
         $this->attr('articles')->one2many('category')->setEntity($article);
+    }
+
+    protected static function entityIndexes(IndexContainer $indexes)
+    {
+        parent::entityIndexes($indexes);
+
+        $indexes->add(new SingleIndex('published', 'published'));
+        $indexes->add(new SingleIndex('slug', 'slug'));
     }
 }

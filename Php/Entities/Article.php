@@ -1,7 +1,9 @@
 <?php
 namespace Apps\Faq\Php\Entities;
 
+use Apps\Webiny\Php\Lib\Api\ApiContainer;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
+use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
 use Apps\Webiny\Php\Lib\Exceptions\AppException;
 use Apps\Webiny\Php\Lib\WebinyTrait;
 use Apps\Webiny\Php\Entities\User;
@@ -33,9 +35,6 @@ class Article extends AbstractEntity
     {
         parent::__construct();
 
-        $this->index(new SingleIndex('published', 'published'));
-        $this->index(new SingleIndex('slug', 'slug'));
-
         $this->attr('slug')->char()->setToArrayDefault()->setValidators('unique')->setValidationMessages([
             'unique' => 'A category with the same title already exists.'
         ]);
@@ -62,17 +61,21 @@ class Article extends AbstractEntity
 
         $this->attr('publishedOn')->datetime()->setToArrayDefault()->setSkipOnPopulate();
 
-
         $category = '\Apps\Faq\Php\Entities\Category';
         $this->attr('category')->many2one()->setEntity($category)->setToArrayDefault();
+    }
 
-        $this->api('GET', '/')->setPublic();
-        $this->api('GET', '{id}')->setPublic();
+    protected function entityApi(ApiContainer $api)
+    {
+        parent::entityApi($api);
+
+        $api->get('/')->setPublic();
+        $api->get('{id}')->setPublic();
 
         /**
          * @api.name Returns all pages from a category
          */
-        $this->api('GET', 'category/{slug}', function ($slug) {
+        $api->get('category/{slug}', function ($slug) {
             /* @var Category $category */
             $category = Category::findOne(['slug' => $slug]);
 
@@ -83,5 +86,13 @@ class Article extends AbstractEntity
             throw new AppException('Category not found.');
 
         })->setPublic();
+    }
+
+    protected static function entityIndexes(IndexContainer $indexes)
+    {
+        parent::entityIndexes($indexes);
+
+        $indexes->add(new SingleIndex('published', 'published'));
+        $indexes->add(new SingleIndex('slug', 'slug'));
     }
 }
