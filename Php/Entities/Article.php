@@ -60,9 +60,7 @@ class Article extends AbstractEntity
         })->setToArrayDefault();
 
         $this->attr('publishedOn')->datetime()->setToArrayDefault()->setSkipOnPopulate();
-
-        $category = '\Apps\Faq\Php\Entities\Category';
-        $this->attr('category')->many2one()->setEntity($category)->setToArrayDefault();
+        $this->attr('category')->many2one()->setEntity(Category::class)->setToArrayDefault();
     }
 
     protected function entityApi(ApiContainer $api)

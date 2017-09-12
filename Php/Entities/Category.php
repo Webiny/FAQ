@@ -48,9 +48,7 @@ class Category extends AbstractEntity
         });
 
         $this->attr('published')->boolean()->setDefaultValue(false)->setToArrayDefault();
-
-        $article = '\Apps\Faq\Php\Entities\Article';
-        $this->attr('articles')->one2many('category')->setEntity($article);
+        $this->attr('articles')->one2many('category')->setEntity(Article::class);
     }
 
     protected static function entityIndexes(IndexContainer $indexes)
