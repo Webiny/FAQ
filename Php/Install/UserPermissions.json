@@ -3,22 +3,28 @@
         "name": "Manage faq articles",
         "slug": "faq-manage-all",
         "description": "Allows user to perform all actions on FAQ app",
-        "permissions": {
-            "Faq.Entities.Article": {
-                "c": true,
-                "u": true,
-                "d": true,
-                "r": true,
-                "category/{slug}": {
-                    "get": true
+        "permissions": [
+            {
+                "classId": "Faq.Entities.Article",
+                "rules": {
+                    "c": true,
+                    "u": true,
+                    "d": true,
+                    "r": true,
+                    "category/{slug}": {
+                        "get": true
+                    }
                 }
             },
-            "Faq.Entities.Category": {
-                "c": true,
-                "u": true,
-                "d": true,
-                "r": true
+            {
+                "classId": "Faq.Entities.Category",
+                "rules": {
+                    "c": true,
+                    "u": true,
+                    "d": true,
+                    "r": true
+                }
             }
-        }
+        ]
     }
 ]

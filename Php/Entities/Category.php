@@ -2,10 +2,8 @@
 
 namespace Apps\Faq\Php\Entities;
 
-use Apps\Webiny\Php\Lib\Api\ApiContainer;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
-use Apps\Webiny\Php\Lib\WebinyTrait;
 use Webiny\Component\Entity\EntityCollection;
 use Webiny\Component\Mongo\Index\SingleIndex;
 
@@ -17,14 +15,10 @@ use Webiny\Component\Mongo\Index\SingleIndex;
  * @property string           $slug
  * @property boolean          $published
  * @property EntityCollection $articles
- *
- * @package Apps\Faq\Php\Entities
- *
  */
 class Category extends AbstractEntity
 {
-    use WebinyTrait;
-
+    protected static $classId = 'Faq.Entities.Category';
     protected static $entityCollection = 'FaqCategory';
     protected static $entityMask = '{title}';
 

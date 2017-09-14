@@ -5,7 +5,6 @@ use Apps\Webiny\Php\Lib\Api\ApiContainer;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
 use Apps\Webiny\Php\Lib\Exceptions\AppException;
-use Apps\Webiny\Php\Lib\WebinyTrait;
 use Apps\Webiny\Php\Entities\User;
 use Webiny\Component\Mongo\Index\SingleIndex;
 
@@ -20,14 +19,10 @@ use Webiny\Component\Mongo\Index\SingleIndex;
  * @property boolean  $published
  * @property string   $publishedOn
  * @property string   $slug
- *
- * @package Apps\TheHub\Php\Entities
- *
  */
 class Article extends AbstractEntity
 {
-    use WebinyTrait;
-
+    protected static $classId = 'Faq.Entities.Article';
     protected static $entityCollection = 'FaqArticle';
     protected static $entityMask = '{question}';
 
