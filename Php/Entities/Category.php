@@ -19,8 +19,8 @@ use Webiny\Component\Mongo\Index\SingleIndex;
 class Category extends AbstractEntity
 {
     protected static $classId = 'Faq.Entities.Category';
-    protected static $entityCollection = 'FaqCategory';
-    protected static $entityMask = '{title}';
+    protected static $collection = 'FaqCategory';
+    protected static $mask = '{title}';
 
     public function __construct()
     {

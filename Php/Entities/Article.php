@@ -23,8 +23,8 @@ use Webiny\Component\Mongo\Index\SingleIndex;
 class Article extends AbstractEntity
 {
     protected static $classId = 'Faq.Entities.Article';
-    protected static $entityCollection = 'FaqArticle';
-    protected static $entityMask = '{question}';
+    protected static $collection = 'FaqArticle';
+    protected static $mask = '{question}';
 
     public function __construct()
     {
