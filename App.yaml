@@ -1,8 +1,8 @@
 Name: Faq
 Version: 0.1.0
-Link: http://www.webiny.com/store/webiny/faq/
-Description:
-
-AuthorName: Webiny LTD
-AuthorLink: http://www.webiny.com
-AuthorEmail: info@webiny.com
+Link: https://github.com/Webiny/Faq
+Description: Simple app for creating FAQ articles and categories
+Author:
+    Name: Webiny LTD
+    Email: info@webiny.com
+    Link: https://www.webiny.com
