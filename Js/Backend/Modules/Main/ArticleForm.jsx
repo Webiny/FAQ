@@ -50,15 +50,15 @@ FaqForm.defaultProps = {
             <Webiny.Ui.LazyLoad modules={['Data', 'Form', 'View', 'Grid', 'Input', 'Select', 'Draft', 'Button']}>
                 {(Ui) => (
                     <Ui.Data {...categoryProps}>
-                        {(categoryData) => {
+                        {({data}) => {
                             return (
                                 <Ui.Form {...formProps}>
-                                    {(data, container) => {
+                                    {({form}) => {
                                         return (
                                             <Ui.View.Form>
                                                 <Ui.View.Header
                                                     title="Article"
-                                                    description={<span>Category: <strong>{categoryData.title}</strong></span>}/>
+                                                    description={<span>Category: <strong>{data.title}</strong></span>}/>
 
                                                 <Ui.View.Body>
                                                     <Ui.Grid.Row>
@@ -84,17 +84,17 @@ FaqForm.defaultProps = {
                                                     <Ui.Button
                                                         align="left"
                                                         type="default"
-                                                        onClick={container.cancel}
+                                                        onClick={form.cancel}
                                                         label="Go Back"/>
                                                     <Ui.Button
                                                         align="right"
                                                         type="primary"
-                                                        onClick={() => this.saveAndContinueEditing(container)}
+                                                        onClick={() => this.saveAndContinueEditing(form)}
                                                         label="Save & Continue editing"/>
                                                     <Ui.Button
                                                         align="right"
                                                         type="primary"
-                                                        onClick={() => this.save(container)}
+                                                        onClick={() => this.save(form)}
                                                         label="Save & Exit"/>
                                                 </Ui.View.Footer>
                                             </Ui.View.Form>

@@ -24,7 +24,7 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
         return (
             <Modal.Dialog>
                 <Form {...formProps}>
-                    {(model, form) => (
+                    {({form}) => (
                         <Modal.Content>
                             <Form.Loader/>
                             <Modal.Header title="Category" onClose={this.hide}/>
@@ -47,7 +47,6 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
                                             description="WARNING: This cannot be changed later."/>
                                     </Grid.Col>
                                 </Grid.Row>
-
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button type="secondary" label="Cancel" onClick={this.hide}/>
