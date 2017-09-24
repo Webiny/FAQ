@@ -6,6 +6,7 @@ use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
 use Apps\Webiny\Php\Lib\Exceptions\AppException;
 use Apps\Webiny\Php\Entities\User;
+use Webiny\Component\Mongo\Index\CompoundIndex;
 use Webiny\Component\Mongo\Index\SingleIndex;
 
 /**
@@ -31,10 +32,10 @@ class Article extends AbstractEntity
         parent::__construct();
 
         $this->attr('slug')->char()->setToArrayDefault()->setValidators('unique')->setValidationMessages([
-            'unique' => 'A category with the same title already exists.'
+            'unique' => 'A question with the same title already exists.'
         ]);
 
-        $this->attr('question')->char()->setRequired(true)->onSet(function ($val) {
+        $this->attr('question')->char()->setValidators('required,unique')->onSet(function ($val) {
             if (!$this->slug && !$this->exists()) {
                 $this->slug = $this->str($val)->slug()->val();
             }
@@ -86,6 +87,7 @@ class Article extends AbstractEntity
         parent::entityIndexes($indexes);
 
         $indexes->add(new SingleIndex('published', 'published'));
-        $indexes->add(new SingleIndex('slug', 'slug'));
+        $indexes->add(new CompoundIndex('slug', ['slug', 'deletedOn'], false, true));
+        $indexes->add(new CompoundIndex('question', ['question', 'deletedOn'], false, true));
     }
 }

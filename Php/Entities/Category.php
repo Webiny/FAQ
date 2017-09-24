@@ -5,6 +5,7 @@ namespace Apps\Faq\Php\Entities;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
 use Webiny\Component\Entity\EntityCollection;
+use Webiny\Component\Mongo\Index\CompoundIndex;
 use Webiny\Component\Mongo\Index\SingleIndex;
 
 /**
@@ -29,7 +30,7 @@ class Category extends AbstractEntity
         $this->attr('slug')->char()->setToArrayDefault()->setValidators('unique')->setValidationMessages([
             'unique' => 'A category with the same title already exists.'
         ]);
-        $this->attr('title')->char()->setRequired(true)->setToArrayDefault()->onSet(function ($val) {
+        $this->attr('title')->char()->setValidators('required,unique')->setToArrayDefault()->onSet(function ($val) {
             if (!$this->slug && !$this->exists()) {
                 $this->slug = $this->str($val)->slug()->val();
             }
@@ -50,6 +51,7 @@ class Category extends AbstractEntity
         parent::entityIndexes($indexes);
 
         $indexes->add(new SingleIndex('published', 'published'));
-        $indexes->add(new SingleIndex('slug', 'slug'));
+        $indexes->add(new CompoundIndex('slug', ['slug', 'deletedOn'], false, true));
+        $indexes->add(new CompoundIndex('title', ['title', 'deletedOn'], false, true));
     }
 }
