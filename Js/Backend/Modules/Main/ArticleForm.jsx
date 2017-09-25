@@ -43,7 +43,7 @@ FaqForm.defaultProps = {
             api: '/entities/faq/category',
             url: Webiny.Router.getParams('category'),
             fields: 'title',
-            prepareLoadedData: data => data.entity
+            prepareLoadedData: ({data}) => data.entity
         };
 
         return (

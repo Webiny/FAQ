@@ -8,9 +8,7 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
         const formProps = {
             api: '/entities/faq/category',
             validateOnFirstSubmit: true,
-            onSubmitSuccess: (val) => {
-                this.props.showView('categoryListView')();
-            },
+            onSubmitSuccess: () => this.props.showView('categoryListView')(),
             model: {
                 id: _.get(this.props.data, 'id', null),
                 title: _.get(this.props.data, 'title', ''),
