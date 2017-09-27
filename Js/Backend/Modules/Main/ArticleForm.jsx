@@ -1,6 +1,9 @@
 import React from 'react';
 import Webiny from 'webiny';
 
+/**
+ * @i18n.namespace FAQ.Backend.Main.FaqForm
+ */
 class FaqForm extends Webiny.Ui.View {
     constructor(props) {
         super(props);
@@ -57,17 +60,17 @@ FaqForm.defaultProps = {
                                         return (
                                             <Ui.View.Form>
                                                 <Ui.View.Header
-                                                    title="Article"
+                                                    title={this.i18n('Article')}
                                                     description={<span>Category: <strong>{data.title}</strong></span>}/>
 
                                                 <Ui.View.Body>
                                                     <Ui.Grid.Row>
                                                         <Ui.Grid.Col all={10}>
-                                                            <Ui.Input label="Question" name="question" validate="required"/>
+                                                            <Ui.Input label={this.i18n('Question')} name="question" validate="required"/>
                                                         </Ui.Grid.Col>
 
                                                         <Ui.Grid.Col all={2}>
-                                                            <Ui.Select label="Published" name="published">
+                                                            <Ui.Select label={this.i18n('Published')} name="published">
                                                                 <option value={true}>Yes</option>
                                                                 <option value={false}>No</option>
                                                             </Ui.Select>
@@ -85,17 +88,17 @@ FaqForm.defaultProps = {
                                                         align="left"
                                                         type="default"
                                                         onClick={form.cancel}
-                                                        label="Go Back"/>
+                                                        label={this.i18n('Go Back')}/>
                                                     <Ui.Button
                                                         align="right"
                                                         type="primary"
                                                         onClick={() => this.saveAndContinueEditing(form)}
-                                                        label="Save & Continue editing"/>
+                                                        label={this.i18n('Save & Continue editing')}/>
                                                     <Ui.Button
                                                         align="right"
                                                         type="primary"
                                                         onClick={() => this.save(form)}
-                                                        label="Save & Exit"/>
+                                                        label={this.i18n('Save & Exit')}/>
                                                 </Ui.View.Footer>
                                             </Ui.View.Form>
                                         );

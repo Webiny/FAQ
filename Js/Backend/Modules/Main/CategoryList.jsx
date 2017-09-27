@@ -3,6 +3,9 @@ import Webiny from 'webiny';
 import CategoryModal from './CategoryModal';
 import ArticleList from './ArticleList';
 
+/**
+ * @i18n.namespace FAQ.Backend.Main.CategoryList
+ */
 class CategoryList extends Webiny.Ui.View {
 
 }
@@ -51,7 +54,7 @@ CategoryList.defaultProps = {
                                 <view>
                                     <Ui.View.List>
                                         <Ui.View.Header
-                                            title="FAQ Articles"
+                                            title={this.i18n('FAQ Articles')}
                                             description="List of your FAQ categories. Click on a category to show the questions.">
                                             <Ui.Link type="primary" align="right" onClick={() => showView('categoryModalView')()}>
                                                 <Ui.Icon icon="icon-plus-circled"/>
@@ -98,16 +101,16 @@ CategoryList.defaultProps = {
                                                                                 </Ui.ExpandableList.RowDetailsList>
                                                                                 <Ui.ExpandableList.ActionSet>
                                                                                     <Ui.ExpandableList.Action
-                                                                                        label="New Article"
+                                                                                        label={this.i18n('New Article')}
                                                                                         icon="fa-plus-circle"
                                                                                         onClick={() => Webiny.Router.goToRoute('Faq.Article.Create', {category: row.id})}/>
                                                                                     <Ui.Dropdown.Divider/>
                                                                                     <Ui.ExpandableList.Action
-                                                                                        label="Edit"
+                                                                                        label={this.i18n('Edit')}
                                                                                         icon="icon-pencil"
                                                                                         onClick={() => showView('categoryModalView')(row)}/>
                                                                                     <Ui.ExpandableList.Action
-                                                                                        label="Delete"
+                                                                                        label={this.i18n('Delete')}
                                                                                         icon="icon-cancel"
                                                                                         onClick={() => showView('confirmDelete')(row)}/>
                                                                                 </Ui.ExpandableList.ActionSet>

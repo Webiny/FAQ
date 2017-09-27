@@ -2,6 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import Webiny from 'webiny';
 
+/**
+ * @i18n.namespace FAQ.Backend.Main.CategoryModal
+ */
 class CategoryModal extends Webiny.Ui.ModalComponent {
 
     renderDialog() {
@@ -25,30 +28,30 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
                     {({form}) => (
                         <Modal.Content>
                             <Form.Loader/>
-                            <Modal.Header title="Category" onClose={this.hide}/>
+                            <Modal.Header title={this.i18n('Category')} onClose={this.hide}/>
                             <Modal.Body>
                                 <Grid.Row>
                                     <Grid.Col all={12}>
-                                        <Input label="Title" name="title" validate="required" autoFocus={true}/>
+                                        <Input label={this.i18n('Title')} name="title" validate="required" autoFocus={true}/>
                                     </Grid.Col>
                                     <Grid.Col all={12}>
-                                        <Select label="Published" name="published">
+                                        <Select label={this.i18n('Published')} name="published">
                                             <option value={true}>Yes</option>
                                             <option value={false}>No</option>
                                         </Select>
                                     </Grid.Col>
                                     <Grid.Col all={12}>
                                         <Input
-                                            label="Slug"
+                                            label={this.i18n('Slug')}
                                             name="slug"
-                                            placeholder="Leave blank for automatic slug"
+                                            placeholder={this.i18n('Leave blank for automatic slug')}
                                             description="WARNING: This cannot be changed later."/>
                                     </Grid.Col>
                                 </Grid.Row>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button type="secondary" label="Cancel" onClick={this.hide}/>
-                                <Button type="primary" label="Save Category" onClick={form.submit}/>
+                                <Button type="secondary" label={this.i18n('Cancel')} onClick={this.hide}/>
+                                <Button type="primary" label={this.i18n('Save Category')} onClick={form.submit}/>
                             </Modal.Footer>
                         </Modal.Content>
                     )}

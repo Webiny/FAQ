@@ -3,6 +3,9 @@ import Webiny from 'webiny';
 import CategoryList from './CategoryList';
 import ArticleForm from './ArticleForm';
 
+/**
+ * @i18n.namespace FAQ.Backend.Main
+ */
 class Main extends Webiny.App.Module {
 
     init() {
@@ -10,7 +13,7 @@ class Main extends Webiny.App.Module {
         const role = 'faq';
 
         this.registerMenus(
-            <Webiny.Ui.Menu label="FAQ" route="Faq.Category.List" icon="fa-question-circle-o" role={role}/>
+            <Webiny.Ui.Menu label={this.i18n('FAQ')} route="Faq.Category.List" icon="fa-question-circle-o" role={role}/>
         );
 
         this.registerRoutes(

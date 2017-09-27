@@ -1,6 +1,9 @@
 import React from 'react';
 import Webiny from 'webiny';
 
+/**
+ * @i18n.namespace FAQ.Backend.Main.ArticleList
+ */
 class ArticleList extends Webiny.Ui.View {
 
 }
@@ -35,14 +38,14 @@ ArticleList.defaultProps = {
                                             </Ui.ExpandableList.RowDetailsList>
                                             <Ui.ExpandableList.ActionSet>
                                                 <Ui.ExpandableList.Action
-                                                    label="Edit"
+                                                    label={this.i18n('Edit')}
                                                     icon="icon-pencil"
                                                     onClick={() => Webiny.Router.goToRoute('Faq.Article.Edit', {
                                                         id: row.id,
                                                         category: this.props.data.id
                                                     })}/>
                                                 <Ui.ExpandableList.Action
-                                                    label="Delete"
+                                                    label={this.i18n('Delete')}
                                                     icon="icon-cancel"
                                                     onClick={() => this.props.showView('articleConfirmDelete')(row)}/>
                                             </Ui.ExpandableList.ActionSet>
