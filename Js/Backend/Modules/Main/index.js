@@ -13,7 +13,7 @@ class Main extends Webiny.App.Module {
         const role = 'faq';
 
         this.registerMenus(
-            <Webiny.Ui.Menu label={this.i18n('FAQ')} route="Faq.Category.List" icon="fa-question-circle-o" role={role}/>
+            <Webiny.Ui.Menu label={Webiny.I18n('FAQ')} route="Faq.Category.List" icon="fa-question-circle-o" role={role}/>
         );
 
         this.registerRoutes(
