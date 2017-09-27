@@ -61,7 +61,7 @@ FaqForm.defaultProps = {
                                             <Ui.View.Form>
                                                 <Ui.View.Header
                                                     title={this.i18n('Article')}
-                                                    description={<span>Category: <strong>{data.title}</strong></span>}/>
+                                                    description={<span>{this.i18n('Category: {name}', {name: <strong>{data.title}</strong>})}</span>}/>
 
                                                 <Ui.View.Body>
                                                     <Ui.Grid.Row>
@@ -71,8 +71,8 @@ FaqForm.defaultProps = {
 
                                                         <Ui.Grid.Col all={2}>
                                                             <Ui.Select label={this.i18n('Published')} name="published">
-                                                                <option value={true}>Yes</option>
-                                                                <option value={false}>No</option>
+                                                                <option value={true}>{this.i18n('Yes')}</option>
+                                                                <option value={false}>{this.i18n('No')}</option>
                                                             </Ui.Select>
                                                         </Ui.Grid.Col>
 

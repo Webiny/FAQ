@@ -32,12 +32,12 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
                             <Modal.Body>
                                 <Grid.Row>
                                     <Grid.Col all={12}>
-                                        <Input label={this.i18n('Title')} name="title" validate="required" autoFocus={true}/>
+                                        <Input label={this.i18n('Title')} name="title" validate="required" autoFocus/>
                                     </Grid.Col>
                                     <Grid.Col all={12}>
                                         <Select label={this.i18n('Published')} name="published">
-                                            <option value={true}>Yes</option>
-                                            <option value={false}>No</option>
+                                            <option value={true}>{this.i18n('Yes')}</option>
+                                            <option value={false}>{this.i18n('No')}</option>
                                         </Select>
                                     </Grid.Col>
                                     <Grid.Col all={12}>
@@ -45,7 +45,7 @@ class CategoryModal extends Webiny.Ui.ModalComponent {
                                             label={this.i18n('Slug')}
                                             name="slug"
                                             placeholder={this.i18n('Leave blank for automatic slug')}
-                                            description="WARNING: This cannot be changed later."/>
+                                            description={this.i18n('WARNING: This cannot be changed later.')}/>
                                     </Grid.Col>
                                 </Grid.Row>
                             </Modal.Body>

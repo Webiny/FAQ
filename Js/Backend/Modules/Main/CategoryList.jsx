@@ -22,10 +22,10 @@ CategoryList.defaultProps = {
         };
 
         const confirmDelete = {
-            label: 'Delete',
-            title: 'Delete confirmation',
+            label: this.i18n('Delete'),
+            title: this.i18n('Delete confirmation'),
             icon: 'icon-cancel',
-            message: 'Are you sure you want to delete this record?',
+            message: this.i18n('Are you sure you want to delete this record?'),
             onConfirm: ({data}) => {
                 const api = new Webiny.Api.Endpoint('/entities/faq/category');
                 return api.delete('/' + data.id);
@@ -33,10 +33,10 @@ CategoryList.defaultProps = {
         };
 
         const articleConfirmDelete = {
-            label: 'Delete',
-            title: 'Delete confirmation',
+            label: this.i18n('Delete'),
+            title: this.i18n('Delete confirmation'),
             icon: 'icon-cancel',
-            message: 'Are you sure you want to delete this record?',
+            message: this.i18n('Are you sure you want to delete this record?'),
             onConfirm: ({data}) => {
                 const api = new Webiny.Api.Endpoint('/entities/faq/article');
                 return api.delete('/' + data.id);
@@ -55,10 +55,10 @@ CategoryList.defaultProps = {
                                     <Ui.View.List>
                                         <Ui.View.Header
                                             title={this.i18n('FAQ Articles')}
-                                            description="List of your FAQ categories. Click on a category to show the questions.">
+                                            description={this.i18n('List of your FAQ categories. Click on a category to show the questions.')}>
                                             <Ui.Link type="primary" align="right" onClick={() => showView('categoryModalView')()}>
                                                 <Ui.Icon icon="icon-plus-circled"/>
-                                                Create new Category
+                                                {this.i18n('Create new Category')}
                                             </Ui.Link>
                                         </Ui.View.Header>
                                         <Ui.View.Body>
@@ -73,24 +73,22 @@ CategoryList.defaultProps = {
                                                                     {list.map(row => {
                                                                         return (
                                                                             <Ui.ExpandableList.Row key={row.id}>
-                                                                                <Ui.ExpandableList.Field width={4} name="Category">
+                                                                                <Ui.ExpandableList.Field width={4}>
                                                                                     {row.title}
                                                                                 </Ui.ExpandableList.Field>
                                                                                 <Ui.ExpandableList.Field
                                                                                     width={2}
-                                                                                    name="Published"
                                                                                     className="text-center">
-                                                                                    {(row.published === true ? "Yes" : "No")}
+                                                                                    {(row.published === true ? this.i18n('Yes') : this.i18n('No'))}
                                                                                 </Ui.ExpandableList.Field>
-                                                                                <Ui.ExpandableList.Field width={2} name="Author">
+                                                                                <Ui.ExpandableList.Field width={2}>
                                                                                     {row.createdBy.firstName} {row.createdBy.lastName}
                                                                                 </Ui.ExpandableList.Field>
-                                                                                <Ui.ExpandableList.Field width={2} name="Created">
+                                                                                <Ui.ExpandableList.Field width={2}>
                                                                                     <Ui.Filters.DateTime value={row.createdOn}/>
                                                                                 </Ui.ExpandableList.Field>
                                                                                 <Ui.ExpandableList.Field
                                                                                     width={2}
-                                                                                    name="Questions"
                                                                                     className="text-center">
                                                                                 <span className="badge badge-default">
                                                                                     {row.articles.length}
