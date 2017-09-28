@@ -78,7 +78,7 @@ class Article extends AbstractEntity
                 return $this->apiFormatList($category->articles, '*,answer');
             }
 
-            throw new AppException('Category not found.');
+            throw new AppException($this->wI18n('Category not found.'));
 
         })->setPublic();
     }
