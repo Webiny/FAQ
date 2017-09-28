@@ -20,6 +20,7 @@ use Webiny\Component\Mongo\Index\SingleIndex;
 class Category extends AbstractEntity
 {
     protected static $classId = 'Faq.Entities.Category';
+    protected static $i18nNamespace = 'Faq.Entities.Category';
     protected static $collection = 'FaqCategory';
     protected static $mask = '{title}';
 

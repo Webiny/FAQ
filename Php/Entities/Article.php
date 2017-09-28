@@ -24,6 +24,7 @@ use Webiny\Component\Mongo\Index\SingleIndex;
 class Article extends AbstractEntity
 {
     protected static $classId = 'Faq.Entities.Article';
+    protected static $i18nNamespace = 'Faq.Entities.Article';
     protected static $collection = 'FaqArticle';
     protected static $mask = '{question}';
 
